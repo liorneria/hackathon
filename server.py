@@ -27,8 +27,8 @@ def SearchClients():
         # creating tcp socket 
         TCP_socket = socket.socket(family = socket.AF_INET, type = socket.SOCK_STREAM)
         TCP_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        # conneect to our port address - 2094
-        TCP_socket.bind(("", 2094))
+        # conneect to our port address - 2160
+        TCP_socket.bind(("", 2160))
         TCP_socket.listen(1)
         # searching until we got 2 cliens
         while  numClients < 2:  
@@ -171,7 +171,7 @@ def close_connections():
 UDP_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 UDP_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 UDP_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-UDP_socket.bind(('', 2054))
+UDP_socket.bind(('', 2160))
 print(u"\u001B[32mServer started' listening on IP address 172.1.0.22\u001B[32m")
 thread = threading.Thread(target = SearchClients, args=())
 thread.start()
