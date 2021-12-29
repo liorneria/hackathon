@@ -31,13 +31,13 @@ while time_left > time.time():
          # The message is rejected if it doesn’t start with this cookie 0xfeedbeef.
         if FullMassage[1] == 2 and FullMassage[0] == 2882395322:  
             # The port on the server that the client is supposed to connect to over TCP
-            TCP_port = FullMassage[4]  
+            TcpPort = FullMassage[4]  
             print(FullMassage)
             print("“Received offer from " + FullMassage[3] + ", attempting to connect...")
             try:
                 team = 'WillyWonka' +"\n" 
                 _socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
-                _socket.connect(('localhost', TCP_port))
+                _socket.connect(('localhost', TcpPort))
                 # print(team)
                 # send the team name to the server
                 _socket.send(team.encode()) 
