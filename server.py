@@ -124,17 +124,17 @@ def StartGame():
                        "\nPlease answer the following question as fast as you can:\n How much is " +str(x1) + " + " +str(x2)
     # for each socket connection we call to ther relevant function
     connections = [Player1, Player2]
-    for i, s in enumerate(sockets):
-        s.send(welcome_message.encode())
-        _thread.start_new_thread(connections[i], (s, addresses[i]))
+    for s in range(len(sockets)):
+        sockets[s].send(welcome_message.encode())
+        _thread.start_new_thread(connections[s], (sockets[s], addresses[s]))
 
 def ValidateResults():
     # no one answer - its a draw
-    if answer1 == [] and answer2 == []:
+    if not answer1 and not answer2:
         end_message = "\nGame over! \nThe correct answer was " + str(answer) + "!\n Its a draw!\n\n" \
     
     # if player 2 didnt answer or player 1 answer first
-    elif answer2 == [] or (answer1!=[] and answer1[0] < answer2[0]):
+    elif not answer2 or (answer1 != [] and answer1[0] < answer2[0]):
         # player 1 is correct
         if int(answer1[1]) == answer:
             end_message = "\nGame over!\nThe correct answer was " + str(answer) + "!\n\n" \
@@ -144,7 +144,7 @@ def ValidateResults():
                         + "Congratulations to the winners:\n==\n" + "" + list(players.keys())[1]
     
     # if player 1 didnt answer or player 2 answer first
-    elif answer1 == [] or (answer2!=[] and answer1[0] > answer2[0]) :
+    elif not answer1 or (answer2 ! =[] and answer1[0] > answer2[0]) :
         # player 2 is correct
         if int(answer2[1]) == answer:
             end_message = "\nGame over!\nThe correct answer was " + str(answer) + "!\n\n" \
@@ -155,13 +155,13 @@ def ValidateResults():
     # print(end_message)
     end_message = u"\u001B[35m" + end_message
     # sending to the clients the game results
-    for i, s in enumerate(sockets):
-        s.send(end_message.encode())
+    for s in range(len(sockets)):
+        sockets[s].send(end_message.encode())
 
 def CloseSockets():
     global sockets
-    for i, s in enumerate(sockets):
-       s.close()
+    for s in range(len(sockets)):
+       sockets[s].close()
     addresses = []
     sockets = []
     
