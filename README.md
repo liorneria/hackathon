@@ -1,4 +1,4 @@
-# hackaton
+# hackathon
 
 Intro to Nets 2021 Hackathon
 Assignment -
