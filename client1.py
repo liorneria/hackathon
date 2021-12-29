@@ -63,6 +63,6 @@ while time_left > time.time():
 
 print("Server disconnected, listening for offer requests...")
 while True:
-    # client go back to waiting for offer messages
+    # the client is waiting for offer massage
     massage = client.recvfrom(buffer_size) 
 
