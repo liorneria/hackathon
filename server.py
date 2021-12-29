@@ -38,7 +38,6 @@ def SearchClients():
         return
     except:
         print("Wrong message type")
-
 # The server keep the clients name
 # and assigns each of the clients randomly to team 1 or team 2
 def AddNewClient(_socket, address):
@@ -76,7 +75,6 @@ def AddNewClient(_socket, address):
         return
     except:
         print("there is an error")
-
 
 def Player1(client, address):
     global answer1
@@ -118,7 +116,6 @@ def Player2(client, address):
             continue
     return 
 
-
 def StartGame():
     # create welcoming message
     welcome_message = "Welcome to Quick Maths.\n" \
@@ -129,7 +126,7 @@ def StartGame():
     connections = [Player1, Player2]
     for i, s in enumerate(sockets):
         s.send(welcome_message.encode())
-        _thread.start_new_thread(connections[s], (sockets[s], addresses[s]))
+        _thread.start_new_thread(connections[i], (s, addresses[i]))
 
 def ValidateResults():
     # no one answer - its a draw
